@@ -1,33 +1,29 @@
-import { useEffect } from "react";
-import { useVideoStore } from "../store/useVideoStore";
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
+import { useVideoStore } from "../store/useVideoStore";
+import { Link } from 'react-router-dom';
+
 const HomePage = () => {
     const { fetchVideoPosts, videoPosts, loading, error, hidePost } = useVideoStore();
-
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     useEffect(() => {
         fetchVideoPosts();
-
     }, [fetchVideoPosts]);
 
-
-    // Function to hide the post and update UI
-    const handleHidePost = async (post_id) => {
-        await hidePost(post_id);
-        fetchVideoPosts(); // Refresh the video posts after hiding
+    const handleToggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
     };
 
     return (
         <div className="text-center mt-16 h-full">
             <div className="flex rounded-lg overflow-hidden">
+                <Sidebar isOpen={isSidebarOpen} onToggle={handleToggleSidebar} />
 
-                <Sidebar />
-
-                <div className="w-full ml-[150px] lg:ml-[250px]">
+                <div className={`w-full ${isSidebarOpen ? 'ml-[150px] lg:ml-[250px]' : 'ml-[50px]'}`}>
                     <div>
                         <h1 className="text-6xl">Video Posts</h1>
-                        <Link to={"/hidden-posts"} className="text-blue-500">
+                        <Link to="/hidden-posts" className="text-blue-500">
                             View Hidden Posts
                         </Link>
                     </div>
@@ -41,7 +37,7 @@ const HomePage = () => {
 
                     <div className="mt-10 flex flex-wrap gap-2 sm:gap-[10px] lg:justify-center ">
                         {videoPosts.map((post) => {
-                            const userDetails = JSON.parse(post.user_details || "{}"); // Fallback to empty object
+                            const userDetails = JSON.parse(post.user_details || "{}");
                             return (
                                 <div
                                     key={post.post_id}
@@ -55,10 +51,12 @@ const HomePage = () => {
                                                 {post.is_hidden ? (
                                                     <p className="text-green-500 font-bold">
                                                         This post is hidden
-
                                                     </p>
                                                 ) : (
-                                                    <button onClick={handleHidePost.bind(this, post.post_id)} className="bg-red-500 p-[4px] rounded-md text-white">
+                                                    <button
+                                                        onClick={() => hidePost(post.post_id)}
+                                                        className="bg-red-500 p-[4px] rounded-md text-white"
+                                                    >
                                                         Hide Post
                                                     </button>
                                                 )}
@@ -75,7 +73,6 @@ const HomePage = () => {
                                         <p>
                                             <strong>Description:</strong> {post.description}
                                         </p>
-
                                         <p>
                                             <strong>Location:</strong> {post.location}
                                         </p>
@@ -102,9 +99,8 @@ const HomePage = () => {
                                     </div>
                                 </div>
                             );
-                        })} 
+                        })}
                     </div>
-
                 </div>
             </div>
         </div>

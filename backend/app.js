@@ -35,7 +35,26 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
  
+const checkIfTableEmpty = async (tableName) => {
+    const { count, error } = await supabase
+        .from(tableName)
+        .select('*', { count: 'exact', head: true }); // Fetch only the count, no actual data
+
+    if (error) {
+        console.error(`Error checking if ${tableName} is empty:`, error);
+        return true; // Assume empty if an error occurs
+    }
+
+    return count === 0; // Return true if the table is empty
+};
+
 const deleteOldPosts = async () => {
+    const isPostsEmpty = await checkIfTableEmpty('posts');
+    if (isPostsEmpty) {
+        console.log('Posts table is empty. No records to delete.');
+        return;
+    }
+
     const { data, error } = await supabase
         .from('posts')
         .delete()
@@ -48,8 +67,28 @@ const deleteOldPosts = async () => {
     }
 };
 
-// Schedule the script to run every hour
+const deleteOldStories = async () => {
+    const isStoriesEmpty = await checkIfTableEmpty('story');
+    if (isStoriesEmpty) {
+        console.log('Stories table is empty. No records to delete.');
+        return;
+    }
+
+    const { data, error } = await supabase
+        .from('story')
+        .delete()
+        .lt('updatedat', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+
+    if (error) {
+        console.error('Error deleting old stories:', error);
+    } else {
+        console.log('Old stories deleted:', data);
+    }
+};
+
+// 5 minutes
 setInterval(deleteOldPosts, 5 * 60 * 1000);
+setInterval(deleteOldStories, 5 * 60 * 1000);
 
 if (process.env.NODE_ENV === "development") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
