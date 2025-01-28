@@ -10,7 +10,7 @@ export const useUserStore = create((set) => ({
         set({ isLoading: true });
         try {
             const response = await axiosInstance.get("/fetchUsers/users");
-            // Extract the "users" field from the response
+
             const users = response.data.users;
             set({ usersinDb: users, error: null, isLoading: false });
         } catch (error) {

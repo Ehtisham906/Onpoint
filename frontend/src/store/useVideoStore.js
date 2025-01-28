@@ -8,7 +8,6 @@ export const useVideoStore = create((set) => ({
     loading: true,
     error: null,
 
-    // Fetch all video posts
     fetchVideoPosts: async () => {
         set({ loading: true, error: null });
         try {
@@ -19,7 +18,6 @@ export const useVideoStore = create((set) => ({
         }
     },
 
-    // Hide a specific post
     hidePost: async (post_id) => {
         try {
             await axiosInstance.post("/vedio_posts/hide", { post_id }); // Adjust the API URL
@@ -36,7 +34,6 @@ export const useVideoStore = create((set) => ({
         }
     },
 
-    // Unhide a specific post
     unhidePost: async (post_id) => {
         try {
             await axiosInstance.put("/vedio_posts/unhide", { post_id });

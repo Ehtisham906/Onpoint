@@ -1,6 +1,5 @@
 import admin from 'firebase-admin';
-
-// Replace `\n` in the private key with actual newlines
+ 
 const privateKey = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n');
 
 admin.initializeApp({
@@ -15,6 +14,7 @@ admin.initializeApp({
     token_uri: process.env.FIREBASE_TOKEN_URI,
     auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
     client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL,
+    universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
   }),
 });
 

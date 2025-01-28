@@ -22,15 +22,15 @@ const Stories = () => {
                     isSidebarOpen ? 'ml-[150px] lg:ml-[250px]' : 'ml-[50px]'
                 } flex flex-col items-center w-full`}
             >
-                <h1 className="text-4xl">Stories</h1>
+                <h1 className="text-4xl font-bold">Stories</h1>
                 {loading ? (
-                    <p className="text-white">Loading stories...</p>
+                    <p className="text-green-500">Loading stories...</p>
                 ) : error ? (
                     <p className="text-red-500">Error loading stories: {error}</p>
                 ) : (
                     <div className="flex flex-wrap gap-10 justify-center mt-4">
                         {storiesPosts.length === 0 ? (
-                            <p className="text-white">No stories available.</p>
+                            <p className="text-green-500">No stories available.</p>
                         ) : (
                             storiesPosts.map((post) => {
                                 const userDetails = JSON.parse(post.userdetails || '{}');

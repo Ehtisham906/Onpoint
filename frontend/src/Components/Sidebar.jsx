@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
-import { BellDot, EyeOff, FileVideo2, UsersRound, Menu } from 'lucide-react';
-import { useState } from 'react';
+import { BellDot, EyeOff, FileVideo2, UsersRound, ChevronRight, ChevronLeft } from 'lucide-react'; 
 
 const Sidebar = ({ isOpen, onToggle }) => {
     return (
         <aside
             className={`bg-primary rounded-2xl text-white fixed h-[100vh] border-base-300 flex flex-col transition-all duration-300 ${
-                isOpen ? 'w-[150px] lg:w-[250px]' : 'w-[50px]'
+                isOpen ? 'w-[150px] lg:w-[250px]' : 'w-[50px] bg-white'
             }`}
         >
             <button
                 onClick={onToggle}
-                className="p-2 text-white bg-gray-700 rounded-full self-end m-4"
+                className="p-2 text-white bg-primary rounded-full self-end m-4"
             >
-                <Menu />
+                {isOpen ? <ChevronLeft /> :  <ChevronRight />}
+               
             </button>
             <div className={`py-12 ${isOpen ? '' : 'hidden'}`}>
                 <div className="flex flex-col gap-4">

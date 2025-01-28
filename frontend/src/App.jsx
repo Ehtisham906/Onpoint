@@ -8,7 +8,7 @@ import LoginPage from "./Pages/LoginPage";
 import Navbar from "./Components/Navbar";
 import Users from "./Pages/Users";
 import HiddenPosts from "./Pages/HiddenPosts";
-import EventNotification from "./Pages/EventNotification";
+import Notifications from "./Pages/Notifications";
 import Stories from "./Pages/Stories";
 
 import { messaging } from "./firebase-config";
@@ -76,12 +76,12 @@ function App() {
         <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
         <Route path="/users" element={!authUser ? <LoginPage /> : <Users />} />
         <Route path="/hidden-posts" element={!authUser ? <LoginPage /> : <HiddenPosts />} />
-        <Route path="/event-notification" element={!authUser ? <LoginPage /> : <EventNotification />} />
+        <Route path="/event-notification" element={!authUser ? <LoginPage /> : <Notifications />} />
         <Route path="/stories-page" element={<Stories />} />
       </Routes>
       <Toaster />
     </>
-  );
+  );  
 }
 
 export default App;

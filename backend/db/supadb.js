@@ -4,16 +4,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Supabase details
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
-// Initialize Supabase client
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const connectToDb = async () => {
+export const connectToDb = async () => {
   try {
-    // Test connection by verifying the client object
     if (supabase) {
       console.log('Supabase connection initialized successfully!');
     } else {
@@ -24,5 +21,4 @@ const connectToDb = async () => {
   }
 };
 
-export default connectToDb;
 

@@ -10,7 +10,6 @@ const HiddenPosts = () => {
         fetchVideoPosts();
     }, [fetchVideoPosts]);
 
-    // Filter hidden posts
     const hiddenPosts = videoPosts.filter((post) => post.is_hidden === true);
 
     const handleToggleSidebar = () => {
@@ -23,9 +22,8 @@ const HiddenPosts = () => {
                 <Sidebar isOpen={isSidebarOpen} onToggle={handleToggleSidebar} />
 
                 <div
-                    className={`w-full ${
-                        isSidebarOpen ? 'ml-[150px] lg:ml-[250px]' : 'ml-[50px]'
-                    } flex flex-col`}
+                    className={`w-full ${isSidebarOpen ? 'ml-[150px] lg:ml-[250px]' : 'ml-[50px]'
+                        } flex flex-col`}
                 >
                     <h1 className="text-2xl font-bold text-center p-2">Hidden Posts</h1>
                     <div className="w-full">
