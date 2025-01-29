@@ -5,8 +5,7 @@ import vedioRoutes from './routes/fetchVediosinDb.route.js';
 import authRoutes from './routes/auth.route.js';
 import fetchUsers from './routes/fetchUsers.route.js';
 import sendNotification from './routes/notification.route.js';
-import cookieParser from 'cookie-parser';
-import { createClient } from '@supabase/supabase-js';
+import cookieParser from 'cookie-parser'; 
 import { connectToDb, supabase } from './db/supadb.js';
 import path from 'path';
 import { deleteOldPosts } from './functions/toDeletePosts.js';
@@ -23,7 +22,7 @@ app.use(cookieParser());
 
 app.use(
     cors({
-        origin: ["http://localhost:5173","https://onpoint-8yxv.onrender.com/event-notification"],
+        origin: ["http://localhost:5173","https://onpoint-8yxv.onrender.com"],
         credentials: true,
     })
 )
