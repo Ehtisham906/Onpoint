@@ -7,6 +7,7 @@ import L from 'leaflet';
 
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
+import { axiosInstance } from '../lib/axios';
 
 const defaultPosition = [33.6844, 73.0479]; // Default location (Islamabad, Pakistan)
 
@@ -30,7 +31,7 @@ const Notifications = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            await axios.post('http://localhost:5001/send-notification', {
+            await axiosInstance.post('/send-notification', {
                 title,
                 body,
                 eventDetails,

@@ -31,7 +31,7 @@ app.use(
 app.use('/api/vedio_posts', vedioRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/fetchUsers', fetchUsers)
-app.use('/send-notification', sendNotification);
+app.use('/api/send-notification', sendNotification);
 
 
 setInterval(deleteOldPosts, 5 * 60 * 1000);
