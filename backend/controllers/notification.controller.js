@@ -1,11 +1,11 @@
-
+import { supabase } from '../db/supadb.js';
 import admin from '../firebase-admin-config.js'; 
 
 export const sendNotification = async (req, res) => {
-    const { title, body, eventDetails, eventLocation } = req.body;
+    const { title, body, eventDetails, eventLocation, startDate, endDate } = req.body;
 
-    if (!title || !body || !eventLocation) {
-        return res.status(400).json({ error: 'Missing required fields (title, body, eventLocation).' });
+    if (!title || !body || !eventLocation || !startDate || !endDate) {
+        return res.status(400).json({ error: 'Missing required fields (title, body, eventLocation, startDate, endDate).' });
     }
 
     const message = {
@@ -16,6 +16,8 @@ export const sendNotification = async (req, res) => {
         data: {
             eventLocation: JSON.stringify(eventLocation),
             eventDetails: JSON.stringify(eventDetails),
+            startDate: startDate,
+            endDate: endDate,
         },
         topic: 'all_users',
     };
@@ -31,6 +33,8 @@ export const sendNotification = async (req, res) => {
                     body: body,
                     event_details: eventDetails,
                     event_location: eventLocation,
+                    start_date: startDate,
+                    end_date: endDate,
                 },
             ]);
 
@@ -47,4 +51,4 @@ export const sendNotification = async (req, res) => {
         console.error('Error:', error.message);
         res.status(500).json({ error: 'Failed to send notification or store event in database.' });
     }
-}
+};

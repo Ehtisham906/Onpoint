@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BellDot, EyeOff, FileVideo2, UsersRound, ChevronRight, ChevronLeft } from 'lucide-react'; 
+import { BellDot, EyeOff, FileVideo2, UsersRound, ChevronRight, ChevronLeft, Calendar1 } from 'lucide-react'; 
 
 const Sidebar = ({ isOpen, onToggle }) => {
     return (
@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
                         <span className="text-sm">Stories</span>
                     </Link>
                     <Link to="/event-notification" className="flex items-center gap-2 lg:ml-14">
-                        <BellDot className="size-4" />
+                        <Calendar1 className="size-4" />
                         <span className="text-sm">Create an Event</span>
                     </Link>
                 </div>

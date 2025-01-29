@@ -34,8 +34,8 @@ app.use('/api/fetchUsers', fetchUsers)
 app.use('/send-notification', sendNotification);
 
 
-setInterval(deleteOldPosts, 1 * 60 * 1000);
-setInterval(deleteOldStories, 1 * 60 * 1000);
+setInterval(deleteOldPosts, 5 * 60 * 1000);
+setInterval(deleteOldStories, 5 * 60 * 1000);
 
 if (process.env.NODE_ENV === "development") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
