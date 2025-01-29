@@ -31,7 +31,7 @@ const Notifications = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            await axiosInstance.post('/send-notification/', {
+            await axiosInstance.post('/send-notification/to-users', {
                 title,
                 body,
                 eventDetails,

@@ -4,6 +4,6 @@ import { sendNotification } from "../controllers/notification.controller.js";
 
 const router = express.Router();
 
-router.post('/', sendNotification);
+router.post('/to-users', sendNotification);
 
 export default router;
