@@ -21,18 +21,18 @@ const HomePage = () => {
                 <Sidebar isOpen={isSidebarOpen} onToggle={handleToggleSidebar} />
 
                 <div className={`w-full ${isSidebarOpen ? 'ml-[150px] lg:ml-[250px]' : 'ml-[50px]'}`}>
-                    <div>
-                        <h1 className="text-6xl">Video Posts</h1>
-                        <Link to="/hidden-posts" className="text-blue-500">
+                    <div className="flex gap-2 flex-col items-center">
+                        <h1 className="text-3xl md:text-6xl">Video Posts</h1>
+                        <Link to="/hidden-posts" className="text-blue-500 border-2 w-fit border-blue-500 rounded-2xl p-2">
                             View Hidden Posts
                         </Link>
                     </div>
-                    {loading && <p>Loading...</p>}
+                    {loading && <p className="text-green-500">Loading...</p>}
 
                     {error && <p style={{ color: "red" }}>Error: {error}</p>}
 
                     {!loading && !error && videoPosts.length === 0 && (
-                        <p>No videos available.</p>
+                        <p  className="text-green-500">No videos available.</p>
                     )}
 
                     <div className="mt-10 flex flex-wrap gap-2 sm:gap-[10px] lg:justify-center ">

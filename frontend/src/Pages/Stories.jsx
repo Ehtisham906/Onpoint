@@ -22,7 +22,7 @@ const Stories = () => {
                     isSidebarOpen ? 'ml-[150px] lg:ml-[250px]' : 'ml-[50px]'
                 } flex flex-col items-center w-full`}
             >
-                <h1 className="text-4xl font-bold">Stories</h1>
+                <h1 className="text-3xl md:text-6xl">Stories</h1>
                 {loading ? (
                     <p className="text-green-500">Loading stories...</p>
                 ) : error ? (
